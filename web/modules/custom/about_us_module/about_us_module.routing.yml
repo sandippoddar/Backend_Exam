@@ -1,0 +1,15 @@
+about_us_module.b_e:
+  path: '/about-us-form'
+  defaults:
+    _title: 'B E'
+    _form: 'Drupal\about_us_module\Form\BEForm'
+  requirements:
+    _permission: 'access content'
+
+about_us_module.example:
+  path: '/about-us'
+  defaults:
+    _title: 'LeaderBoard'
+    _controller: '\Drupal\about_us_module\Controller\AboutUsModuleController::render'
+  requirements:
+    _permission: 'access content'

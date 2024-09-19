@@ -1,0 +1,118 @@
+<?php
+
+/**
+ * @file
+ * To implement the hooks.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Core\Language\LanguageInterface;
+
+/**
+ * Implements hook_cron().
+ */
+function news_functions_cron() {
+
+  // Define the time threshold for 6 months ago.
+  $six_months_ago = DrupalDateTime::createFromTimestamp(strtotime('-6 month'));
+
+  // Load news nodes older than 6 months.
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+
+  $query->condition('type', 'news')
+    ->condition('status', 1)
+    ->condition('created', $six_months_ago->getTimestamp(), '<')
+    ->accessCheck(FALSE);
+
+  $nids = $query->execute();
+
+  if (!empty($nids)) {
+    $nodes_to_delete = Node::loadMultiple($nids);
+    $deleted_titles = [];
+
+    foreach ($nodes_to_delete as $node) {
+      $deleted_titles[] = $node->getTitle();
+      $node->delete();
+    }
+
+    if (!empty($deleted_titles)) {
+      _news_functions_send_email($deleted_titles);
+    }
+  }
+}
+
+/**
+ * Send an email to all editors with a list of deleted news.
+ *
+ * @param array $deleted_titles
+ *   An array of titles of the deleted news.
+ */
+function _news_functions_send_email(array $deleted_titles) {
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'news_functions';
+    $key = 'news_deleted';
+    $to = _news_functions_get_editors_emails();
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  
+    // Subject of the email.
+    $subject = t('News Deleted Notification');
+  
+    // Body of the email.
+    $message = t('The following news articles older than 6 months were deleted:') . "\n\n";
+    $message .= implode("\n", $deleted_titles);
+  
+    // Send the email.
+    $params = [
+      'subject' => $subject,
+      'body' => $message,
+    ];
+  
+    if (!empty($to)) {
+      $recipients = explode(', ', $to);
+  
+      foreach ($recipients as $recipient) {
+        $mailManager->mail($module, $key, trim($recipient), $langcode, $params, NULL, TRUE);
+      }
+    }
+  }
+  
+  /**
+   * Get a list of email addresses of all users with the 'editor' role.
+   *
+   * @return string
+   *   A comma-separated string of email addresses.
+   */
+  function _news_functions_get_editors_emails() {
+    $editor_role = 'news_editor';
+    $editor_uids = \Drupal::entityTypeManager()->getStorage('user')->getQuery()
+      ->condition('status', 1)
+      ->condition('roles', $editor_role)
+      ->accessCheck(TRUE)
+      ->execute();
+  
+    $emails = [];
+  
+    if (!empty($editor_uids)) {
+      $editors = User::loadMultiple($editor_uids);
+      foreach ($editors as $editor) {
+        $emails[] = $editor->getEmail();
+      }
+    }
+  
+    return implode(', ', $emails);
+  }
+
+/**
+ * Implements hook_mail().
+ */
+function news_functions_mail($key, &$message, $params) {
+    switch ($key) {
+      case 'news_deleted':
+        $message['subject'] = $params['subject'];
+        $message['body'][] = $params['body'];
+        break;
+    }
+  }
