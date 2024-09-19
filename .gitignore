@@ -1,0 +1,38 @@
+# This file contains .gitignore rules that are often used with Drupal projects.
+# Because .gitignore is specific to your site and its deployment processes, you
+# may need to uncomment, add, or remove rules.
+# Pantheon commits a settings.php for environment-specific settings.
+# Place local settings in settings.local.php
+
+/web/sites/*/settings.local.php
+/web/sites/*/services*.yml
+!/web/sites/*/services.pantheon.*.yml
+!/web/sites/*/services.yml
+# Ignore paths that contain user-generated content.
+/web/sites/*/files
+/web/sites/*/private
+# Ignore SimpleTest multi-site environment.
+/web/sites/simpletest
+
+/drush/Commands/contrib/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+/web/private/scripts/quicksilver
+
+/vendor/
+/.editorconfig
+/.gitattributes
+
+/.drush-lock-update
+
+/web/**/.gitignore
+/web/themes/custom/gotjunk_us/node_modules
+
+/web/sites/default/robots-copy.txt
+~/
+/tmp/*
+/web/sites/default/settings.php
+/web/sites/development.services.yml
