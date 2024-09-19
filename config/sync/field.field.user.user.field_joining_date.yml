@@ -1,0 +1,21 @@
+uuid: 4039ad94-1701-49f4-96e7-398e21a5cd76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_joining_date
+  module:
+    - datetime
+    - user
+id: user.user.field_joining_date
+field_name: field_joining_date
+entity_type: user
+bundle: user
+label: 'Joining Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

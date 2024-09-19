@@ -1,0 +1,25 @@
+uuid: e880cab7-304d-4d26-8af1-1848c79dc2e2
+langcode: en
+status: true
+dependencies:
+  module:
+    - news_section
+    - system
+  theme:
+    - olivero
+id: olivero_newssection
+theme: olivero
+region: content
+weight: 0
+provider: null
+plugin: news_section
+settings:
+  id: news_section
+  label: 'News Section'
+  label_display: visible
+  provider: news_section
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /home

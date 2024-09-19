@@ -1,0 +1,20 @@
+uuid: 85bb160e-148e-4568-9cde-b6455b43e62e
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - user
+id: user.field_anchor_genre
+field_name: field_anchor_genre
+entity_type: user
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

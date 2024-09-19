@@ -1,0 +1,30 @@
+uuid: 7c7fe357-8ee3-4b53-9f31-5beb40c10156
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_anchor_genre
+    - taxonomy.vocabulary.anchor_genre
+  module:
+    - user
+id: user.user.field_anchor_genre
+field_name: field_anchor_genre
+entity_type: user
+bundle: user
+label: 'Anchor Genre'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      anchor_genre: anchor_genre
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
