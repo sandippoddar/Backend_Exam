@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Category Head module.
+ */
+
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the user registration form.
+ */
+function category_head_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    // dd($form);
+    if ($form_id == 'user_register_form') {
+        $form['#validate'][] = 'category_head_validate_editor_term';
+    }
+}
+
+/**
+ * Custom validation function to check if the term is already referenced by another editor.
+ */
+function category_head_validate_editor_term(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+
+  $selected_term = $form_state->getValue('field_category_head');
+//   dd($form);
+  $roles = $form_state->getValue('roles');
+  if (!empty($selected_term)) {
+    
+    $query = \Drupal::entityTypeManager()->getStorage('user')->getQuery()
+      ->condition('roles', 'news_editor')
+      ->condition('field_category_head', $selected_term)
+      ->accessCheck(TRUE)
+      ->range(0, 1);
+      
+    $results = $query->execute();
+    dump($results);
+
+    if (!empty($results)) {
+      $userName = User::load(reset($results))->getDisplayName();
+      $form_state->setErrorByName('field_category_head', t('The selected category is already assigned to @userName. Please choose a different category.', ['@userName' => $userName]));
+    }
+  }
+}

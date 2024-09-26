@@ -1,0 +1,9 @@
+uuid: 7cc472a9-a014-4aa1-9ae1-510d9756c211
+langcode: en
+status: true
+dependencies: {  }
+id: news_editor
+label: 'News Editor'
+weight: 5
+is_admin: null
+permissions: {  }

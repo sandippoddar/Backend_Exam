@@ -1,0 +1,28 @@
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Designation</th>
+      <th>Linkedin Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+      <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.designation }}</td>
+        <td>{{ row.profile_link }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3> Best Anchor of the Week is: {{ user }} </h3>
+<div>
+  {% for node in nodes %}
+    <p>
+      <a href="{{ node.url }}">{{ node.title }}</a>
+    </p>
+  {% endfor %}
+</div>

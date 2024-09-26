@@ -1,0 +1,5 @@
+name: 'About us Module'
+type: module
+description: 'Todo'
+package: Custom
+core_version_requirement: ^10 || ^11

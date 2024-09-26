@@ -1,0 +1,17 @@
+
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function about_us_module_theme($existing, $type, $theme, $path) {
+  return [
+    'my_template' => [
+      'variables' => [
+        'rows' => [],
+        'nodes' => [],
+        'user' => "",
+      ],
+    ],
+  ];
+}

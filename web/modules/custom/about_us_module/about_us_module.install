@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function about_us_module_schema() {
+  $schema['be_table'] = [
+    'description' => 'Stores the form data submitted by the dynamic form.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: Unique ID for each entry.',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+
+      'designation' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+
+      'profile_link' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+
+    ],
+    'primary key' => ['id'],
+  ];
+
+  $schema['anchor_of_week'] = [
+    'description' => 'Stores Anchor of the Week data.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: Unique ID for each entry.',
+        'default' => 1,
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'anchor' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ]
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}
