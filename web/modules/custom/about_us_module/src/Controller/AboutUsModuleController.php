@@ -7,6 +7,7 @@ namespace Drupal\about_us_module\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\user\Entity\User;
 use Drupal\Core\Cache\Cache;
 
 /**
@@ -44,9 +45,38 @@ final class AboutUsModuleController extends ControllerBase {
     $query = $this->database->select('be_table', 's')
       ->fields('s', ['name', 'designation', 'profile_link']);
     $results = $query->execute()->fetchAll();
+
+    $queryAnchor = $this->database->select('anchor_of_week','a');
+    $result = $queryAnchor->fields('a',['anchor'])
+      ->execute()->fetchAll();
+
+    $anchorId = $result[0]->anchor;
+    $user = User::load($anchorId)->getDisplayName();
+
+    $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+      ->condition('type', 'news')
+      ->condition('status', '1')
+      ->condition('uid', $anchorId)
+      ->accessCheck(TRUE)
+      ->sort('created', 'DESC')
+      ->range(0, 3);
+
+      $nodeIds = $query->execute();
+
+      $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nodeIds);
+      $nodeLinks = [];
+      foreach ($nodes as $node) {
+        $nodeLinks[] = [
+          'title' => $node->getTitle(),
+          'url' => $node->toUrl()->toString(), // Generate the URL here
+        ];
+      }
+
     return[
       '#theme' => 'my_template',
       '#rows' => $results,
+      '#nodes' => $nodeLinks,
+      '#user' => $user,
       '#cache' => [
         'tags' => ['about_data'],
       ]

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb488d12501a036b699e353d2aa2986b",
+    "content-hash": "fb74ca317eaa5ea4cab869efe45bac9f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -770,6 +770,54 @@
             "time": "2024-06-20T10:14:30+00:00"
         },
         {
+            "name": "drupal/admin_content_notification",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/admin_content_notification.git",
+                "reference": "8.x-4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/admin_content_notification-8.x-4.1.zip",
+                "reference": "8.x-4.1",
+                "shasum": "438855a72f18189f19e6505599bf88aa78814927"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-4.1",
+                    "datestamp": "1683710013",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "aayush23",
+                    "homepage": "https://www.drupal.org/user/3389476"
+                },
+                {
+                    "name": "manish.upadhyay",
+                    "homepage": "https://www.drupal.org/user/3001253"
+                }
+            ],
+            "description": "Enable Admin Content Notification.",
+            "homepage": "https://www.drupal.org/project/admin_content_notification",
+            "support": {
+                "source": "https://git.drupalcode.org/project/admin_content_notification"
+            }
+        },
+        {
             "name": "drupal/admin_toolbar",
             "version": "3.5.0",
             "source": {
@@ -852,6 +900,60 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
+            }
+        },
+        {
+            "name": "drupal/content_notify",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/content_notify.git",
+                "reference": "3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/content_notify-3.0.2.zip",
+                "reference": "3.0.2",
+                "shasum": "1b948574747384cca7f839537fefa0b471fde2a1"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.2",
+                    "datestamp": "1681889170",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Takim Islam",
+                    "homepage": "http://drupalsharing.com/",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "takim",
+                    "homepage": "https://www.drupal.org/user/252386"
+                },
+                {
+                    "name": "YesCT",
+                    "homepage": "https://www.drupal.org/user/258568"
+                }
+            ],
+            "description": "Notifications of content based on invalid and unpublishing",
+            "homepage": "https://drupal.org/project/content_notify",
+            "support": {
+                "source": "http://cgit.drupalcode.org/content_notify",
+                "issues": "https://www.drupal.org/project/issues/content_notify"
             }
         },
         {
@@ -1288,6 +1390,244 @@
             "homepage": "https://www.drupal.org/project/devel_php",
             "support": {
                 "source": "https://git.drupalcode.org/project/devel_php"
+            }
+        },
+        {
+            "name": "drupal/dynamic_banner",
+            "version": "1.0.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/dynamic_banner.git",
+                "reference": "8.x-1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dynamic_banner-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "03c1d17237266074ecd60f7153362e4d10ce7cff"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1705031379",
+                    "security-coverage": {
+                        "status": "revoked",
+                        "message": "Project has been unsupported by the Drupal Security Team"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "abrlam",
+                    "homepage": "https://www.drupal.org/user/1923732"
+                },
+                {
+                    "name": "gaurav.goyal",
+                    "homepage": "https://www.drupal.org/user/2497208"
+                },
+                {
+                    "name": "Unsupported Projects",
+                    "homepage": "https://www.drupal.org/user/291168"
+                }
+            ],
+            "description": "Module to manage dynamic banners",
+            "homepage": "https://www.drupal.org/project/dynamic_banner",
+            "support": {
+                "source": "https://git.drupalcode.org/project/dynamic_banner"
+            }
+        },
+        {
+            "name": "drupal/field_permissions",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/field_permissions.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_permissions-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "bd3f5803d8c195bc136d4a25774346d69f653029"
+            },
+            "require": {
+                "drupal/core": "^9.5 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1721754779",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "branch-alias": {
+                    "dev-8.x-1.x": "1.x-dev"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "jhedstrom",
+                    "homepage": "https://www.drupal.org/user/208732"
+                },
+                {
+                    "name": "mariacha1",
+                    "homepage": "https://www.drupal.org/user/2210776"
+                },
+                {
+                    "name": "markus_petrux",
+                    "homepage": "https://www.drupal.org/user/39593"
+                },
+                {
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                }
+            ],
+            "description": "The Field Permissions module allows site administrators to set field-level permissions to edit, view and create fields on any entity.",
+            "homepage": "https://www.drupal.org/project/field_permissions",
+            "support": {
+                "source": "https://git.drupalcode.org/project/field_permissions",
+                "issues": "https://www.drupal.org/project/issues/field_permissions"
+            }
+        },
+        {
+            "name": "drupal/pbf",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/pbf.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/pbf-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "280dc1690b8e3a8e7ff5dab2efb5d58acae30f55"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1688679202",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "flocondetoile",
+                    "homepage": "https://www.drupal.org/user/2006064"
+                }
+            ],
+            "description": "Manage access entity by field",
+            "homepage": "https://www.drupal.org/project/pbf",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/pbf",
+                "issues": "https://www.drupal.org/project/issues/pbf"
+            }
+        },
+        {
+            "name": "drupal/scheduler",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/scheduler.git",
+                "reference": "2.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/scheduler-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "aea0f1dc40cfbc75f470860998d773a8749bcee2"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/commerce": "^2 || ^3",
+                "drupal/devel_generate": ">=4",
+                "drupal/rules": "^3 || ^4",
+                "drupal/workbench_moderation": "*",
+                "drupal/workbench_moderation_actions": "*",
+                "drush/drush": ">=9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.1.0",
+                    "datestamp": "1723723795",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Eric Schaefer (Eric Schaefer)",
+                    "homepage": "https://www.drupal.org/u/eric-schaefer",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jonathan Smith (jonathan1055)",
+                    "homepage": "https://www.drupal.org/u/jonathan1055",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Pieter Frenssen (pfrenssen)",
+                    "homepage": "https://www.drupal.org/u/pfrenssen",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Rick Manelius (rickmanelius)",
+                    "homepage": "https://www.drupal.org/u/rickmanelius",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Automatically publish and unpublish content at specified dates and times.",
+            "homepage": "https://drupal.org/project/scheduler",
+            "support": {
+                "source": "https://git.drupalcode.org/project/scheduler",
+                "issues": "https://www.drupal.org/project/issues/scheduler"
             }
         },
         {
@@ -6706,7 +7046,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "drupal/dynamic_banner": 10
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

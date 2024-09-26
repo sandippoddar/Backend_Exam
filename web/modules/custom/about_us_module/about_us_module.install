@@ -35,5 +35,23 @@ function about_us_module_schema() {
     'primary key' => ['id'],
   ];
 
+  $schema['anchor_of_week'] = [
+    'description' => 'Stores Anchor of the Week data.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: Unique ID for each entry.',
+        'default' => 1,
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'anchor' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ]
+    ],
+    'primary key' => ['id'],
+  ];
+
   return $schema;
 }

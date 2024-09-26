@@ -17,3 +17,12 @@
     {% endfor %}
   </tbody>
 </table>
+
+<h3> Best Anchor of the Week is: {{ user }} </h3>
+<div>
+  {% for node in nodes %}
+    <p>
+      <a href="{{ node.url }}">{{ node.title }}</a>
+    </p>
+  {% endfor %}
+</div>

@@ -68,6 +68,26 @@ final class BEForm extends FormBase {
       '#required' => TRUE,
     ];
 
+    $form['my_file'] = [
+      '#type' => 'managed_file',
+      '#title' => 'Profile Image',
+      '#name' => 'my_custom_file',
+      '#upload_location' => 'public://'
+    ];
+
+    $anchors = \Drupal::entityTypeManager()->getStorage('user')
+      ->loadByProperties(['roles' => 'news_anchor']);
+    
+    $anchorOptions = [];
+    foreach ($anchors as $anchor) {
+      $anchorOptions[$anchor->id()] = $anchor->getDisplayName();
+    }
+
+    $form['anchor_name'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Best Anchor of Week'),
+      '#options' => $anchorOptions,
+    ];
     $form['actions'] = [
       '#type' => 'actions',
       'submit' => [
@@ -99,14 +119,36 @@ final class BEForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
+    dd( $form_state);
     $this->database->insert('be_table')
+      ->fields([
+        'name' => $form_state->getValue('name'),
+        'designation' => $form_state->getValue('designation'),
+        'profile_link' => $form_state->getValue('linkedin_link'),
+      ])
+      ->execute();
+    
+    $queryAnchor = $this->database->select('anchor_of_week','a');
+    $result = $queryAnchor->fields('a',['anchor'])
+      ->execute()->fetchAll();
+    
+    if (!$result) {
+      $this->database->insert('anchor_of_week')
+      ->fields([
+        'anchor' => $form_state->getValue('anchor_name'),
+      ])
+      ->execute();
+    }
+    
+    else {
+      $this->database->update('anchor_of_week')
         ->fields([
-          'name' => $form_state->getValue('name'),
-          'designation' => $form_state->getValue('designation'),
-          'profile_link' => $form_state->getValue('linkedin_link'),
+          'anchor' => $form_state->getValue('anchor_name'),
         ])
         ->execute();
-        Cache::invalidateTags(['about_data']);
+    }
+    
+    Cache::invalidateTags(['about_data']);
   }
 
 }

@@ -9,6 +9,8 @@ function about_us_module_theme($existing, $type, $theme, $path) {
     'my_template' => [
       'variables' => [
         'rows' => [],
+        'nodes' => [],
+        'user' => "",
       ],
     ],
   ];

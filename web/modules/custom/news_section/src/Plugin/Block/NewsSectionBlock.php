@@ -76,48 +76,58 @@ final class NewsSectionBlock extends BlockBase implements ContainerFactoryPlugin
    * {@inheritdoc}
    */
   public function build() {
-    $build = [];
 
-    // Get the current logged-in user.
-    $current_user = $this->entityTypeManager->getStorage('user')->load($this->currentUser->id());
-
-    // Assuming that the genre is a field on the user profile.
-    $genre_field = $current_user->get('field_anchor_genre')->entity;
-
-    if ($genre_field instanceof Term) {
-      $genre_tid = $genre_field->id();
-      
-      $query = $this->entityTypeManager->getStorage('node')->getQuery()
-        ->condition('type', 'news') 
-        ->condition('status', 1)
-        ->condition('field_anchor_genre', $genre_tid)
-        ->condition('uid', $this->currentUser->id(), '<>')
-        ->sort('created', 'DESC')
-        ->range(0, 5)
+    $routeMatch = \Drupal::routeMatch();
+    $userId = $routeMatch->getRawParameter('user');
+    
+    if ($userId) {
+      $current_user = $this->entityTypeManager->getStorage('user')->load($userId);
+      if ($current_user->get('field_anchor_genre')->isEmpty()) {
+        return [];
+      }
+      $genreField = $current_user->get('field_anchor_genre')->getValue();
+  
+      $query = $this->entityTypeManager->getStorage('user')->getQuery()
+        ->condition('field_anchor_genre', $genreField)
+        ->condition('roles', 'news_anchor')
+        ->condition('uid', $userId, '!=')
         ->accessCheck(TRUE);
-        
-      $nids = $query->execute();
-      if (!empty($nids)) {
-        $nodes = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
-        $items = [];
-        foreach ($nodes as $node) {
-          $items[] = [
-            $node->toLink()->toString()
+      
+      $userLists = $query->execute();
+      if (!empty($userLists)) {
+
+        $query1 = $this->entityTypeManager->getStorage('node')->getQuery()
+          ->condition('type', 'news')
+          ->condition('uid', $userLists, 'IN')
+          ->accessCheck(TRUE);
+    
+        $nodeLists = $query1->execute();
+  
+        if (!empty($nodeLists)) {
+          $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nodeLists);
+      
+          $nodeLinks = [];
+          foreach ($nodes as $node) {
+            $nodeLinks[] = [
+              'title' => $node->getTitle(),
+              'url' => $node->toUrl()->toString(),
+            ];
+          }
+          
+          return [
+            '#theme' => 'my_template',
+            '#items' => $nodeLinks,
+            '#cache' => [
+              'contexts' => ['url.path']
+            ]
           ];
         }
-
-        $build['content'] = [
-          '#theme' => 'my_template',
-          '#items' => $items,
-        ];
+        return [];
       }
-    }
 
-    // Only render the block if there are news items to show.
-    if (empty($build['content'])) {
       return [];
     }
 
-    return $build;
+    return [];
   }
 }
